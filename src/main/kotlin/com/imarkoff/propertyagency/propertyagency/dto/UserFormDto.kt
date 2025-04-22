@@ -1,15 +1,11 @@
 package com.imarkoff.propertyagency.propertyagency.dto
 
-import com.imarkoff.propertyagency.propertyagency.type.UUIDString
 import io.swagger.v3.oas.annotations.media.Schema
 import kotlinx.serialization.Serializable
 
-@Schema(description = "User information data transfer object")
+@Schema(description = "User data used for creating or updating a user")
 @Serializable
-data class UserDto(
-    @Schema(description = "Unique identifier of the user", example = "123e4567-e89b-12d3-a456-426614174000")
-    val id: UUIDString,
-
+data class UserFormDto(
     @Schema(description = "Name of the user", example = "John Doe")
     val name: String,
 

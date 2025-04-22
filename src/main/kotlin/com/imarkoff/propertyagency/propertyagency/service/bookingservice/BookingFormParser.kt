@@ -2,8 +2,9 @@ package com.imarkoff.propertyagency.propertyagency.service.bookingservice
 
 import com.imarkoff.propertyagency.propertyagency.dto.BookingFormDto
 import com.imarkoff.propertyagency.propertyagency.model.Booking
+import com.imarkoff.propertyagency.propertyagency.type.toLocalDate
+import com.imarkoff.propertyagency.propertyagency.type.toUUID
 import org.springframework.stereotype.Service
-import java.time.LocalDate
 import java.time.format.DateTimeParseException
 import java.util.*
 
@@ -29,9 +30,9 @@ class BookingFormParser {
 
     private fun bookingFormDtoToBooking(bookingForm: BookingFormDto, bookingId: UUID?): Booking {
         val id = bookingId ?: UUID.randomUUID()
-        val userId = UUID.fromString(bookingForm.userId)
-        val startDate = LocalDate.parse(bookingForm.startDate)
-        val endDate = LocalDate.parse(bookingForm.endDate)
+        val userId = bookingForm.userId.toUUID()
+        val startDate = bookingForm.startDate.toLocalDate()
+        val endDate = bookingForm.endDate.toLocalDate()
         return Booking(
             id = id,
             userId = userId,

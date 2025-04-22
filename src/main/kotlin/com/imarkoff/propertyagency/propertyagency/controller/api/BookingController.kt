@@ -38,10 +38,16 @@ class BookingController(
         ApiResponse(responseCode = "404", description = "Booking not found")
     ])
     @GetMapping("/{id}")
-    fun getBookingById(@PathVariable id: UUID): ResponseEntity<BookingDto> {
-        val booking = bookingService.getBookingById(id)
-            ?: return ResponseEntity.notFound().build()
-        return ResponseEntity.ok(booking)
+    fun getBookingById(@PathVariable id: UUID): ResponseEntity<Any> {
+        try {
+            val booking = bookingService.getBookingById(id)
+                ?: throw NoSuchElementException()
+            return ResponseEntity.ok(booking)
+        }
+        catch (e: NoSuchElementException) {
+            val errorResponse = ErrorResponse(404, "Booking not found")
+            return ResponseEntity.status(404).body(errorResponse)
+        }
     }
 
     @Operation(summary = "Get bookings by user ID", description = "Retrieves all bookings associated with a specific user")
