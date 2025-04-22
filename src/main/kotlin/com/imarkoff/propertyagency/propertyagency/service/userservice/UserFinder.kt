@@ -3,8 +3,8 @@ package com.imarkoff.propertyagency.propertyagency.service.userservice
 import com.imarkoff.propertyagency.propertyagency.dto.UserDto
 import com.imarkoff.propertyagency.propertyagency.model.User
 import com.imarkoff.propertyagency.propertyagency.repository.UserRepository
-import com.imarkoff.propertyagency.propertyagency.type.UUIDString
-import com.imarkoff.propertyagency.propertyagency.type.toUUID
+import com.imarkoff.propertyagency.propertyagency.type.`typealias`.UUIDString
+import com.imarkoff.propertyagency.propertyagency.type.`typealias`.toUUID
 import com.imarkoff.propertyagency.propertyagency.util.DtoFactory
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service

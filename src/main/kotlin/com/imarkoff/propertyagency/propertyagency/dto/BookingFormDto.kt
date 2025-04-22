@@ -1,6 +1,8 @@
 package com.imarkoff.propertyagency.propertyagency.dto
 
 import com.imarkoff.propertyagency.propertyagency.type.*
+import com.imarkoff.propertyagency.propertyagency.type.`typealias`.LocalDateString
+import com.imarkoff.propertyagency.propertyagency.type.`typealias`.UUIDString
 import io.swagger.v3.oas.annotations.media.Schema
 import kotlinx.serialization.Serializable
 

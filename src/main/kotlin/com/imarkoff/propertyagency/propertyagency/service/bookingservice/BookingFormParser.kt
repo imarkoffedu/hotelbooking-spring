@@ -2,8 +2,8 @@ package com.imarkoff.propertyagency.propertyagency.service.bookingservice
 
 import com.imarkoff.propertyagency.propertyagency.dto.BookingFormDto
 import com.imarkoff.propertyagency.propertyagency.model.Booking
-import com.imarkoff.propertyagency.propertyagency.type.toLocalDate
-import com.imarkoff.propertyagency.propertyagency.type.toUUID
+import com.imarkoff.propertyagency.propertyagency.type.`typealias`.toLocalDate
+import com.imarkoff.propertyagency.propertyagency.type.`typealias`.toUUID
 import org.springframework.stereotype.Service
 import java.time.format.DateTimeParseException
 import java.util.*

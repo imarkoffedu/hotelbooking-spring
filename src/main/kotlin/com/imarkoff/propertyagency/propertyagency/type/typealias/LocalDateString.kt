@@ -1,4 +1,4 @@
-package com.imarkoff.propertyagency.propertyagency.type
+package com.imarkoff.propertyagency.propertyagency.type.`typealias`
 
 import java.time.LocalDate
 import java.time.format.DateTimeParseException
