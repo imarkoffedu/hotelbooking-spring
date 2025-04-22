@@ -17,7 +17,7 @@ class BookingFormParser {
      * @return The Booking object.
      * @throws IllegalArgumentException if the date format is invalid.
      */
-    fun parse(bookingForm: BookingFormDto, bookingId: UUID? = null): Booking =
+    fun parse(bookingForm: BookingFormDto, bookingId: UUID? = null) =
         tryBookingFormToBooking(bookingForm, bookingId)
 
     private fun tryBookingFormToBooking(bookingForm: BookingFormDto, bookingId: UUID?): Booking {

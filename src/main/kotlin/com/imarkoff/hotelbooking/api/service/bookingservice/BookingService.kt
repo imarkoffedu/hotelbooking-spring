@@ -14,7 +14,10 @@ class BookingService(
     fun getAllBookings() =
         bookingReader.getAllBookings()
 
-    /** Retrieves a booking by its ID. */
+    /**
+     * Retrieves a booking by its ID.
+     * @throws NoSuchElementException if the booking is not found.
+     * */
     fun getBookingById(id: UUID) =
         bookingReader.getBookingById(id)
 

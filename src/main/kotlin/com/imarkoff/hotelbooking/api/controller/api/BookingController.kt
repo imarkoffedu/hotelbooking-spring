@@ -39,7 +39,6 @@ class BookingController(
     fun getBookingById(@PathVariable id: UUID): ResponseEntity<Any> {
         try {
             val booking = bookingService.getBookingById(id)
-                ?: throw NoSuchElementException()
             return ResponseEntity.ok(booking)
         }
         catch (e: NoSuchElementException) {
