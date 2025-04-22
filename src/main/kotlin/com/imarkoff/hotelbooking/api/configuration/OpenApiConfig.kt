@@ -13,8 +13,8 @@ class OpenApiConfig {
         return OpenAPI()
             .info(
                 Info()
-                    .title("Property Agency API")
-                    .description("API for property booking system")
+                    .title("Hotel booking API")
+                    .description("API for hotel booking system")
                     .version("1.0")
             )
     }
