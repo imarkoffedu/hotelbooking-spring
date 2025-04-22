@@ -1,6 +1,8 @@
 package com.imarkoff.propertyagency.propertyagency.controller.api
 
+import com.imarkoff.propertyagency.propertyagency.dto.BookingDto
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.media.*
 import io.swagger.v3.oas.annotations.responses.*
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.*
@@ -12,7 +14,9 @@ import java.util.UUID
 class BookingController {
     @Operation(summary = "Get all bookings", description = "Retrieves a list of all bookings in the system")
     @ApiResponses(value = [
-        ApiResponse(responseCode = "200", description = "Successfully retrieved all bookings")
+        ApiResponse(responseCode = "200", description = "Successfully retrieved all bookings",
+            content = [Content(mediaType = "application/json",
+                schema = Schema(implementation = Array<BookingDto>::class))])
     ])
     @GetMapping("/")
     fun getAllBookings() {
@@ -21,7 +25,9 @@ class BookingController {
 
     @Operation(summary = "Get all bookings", description = "Retrieves a list of all bookings in the system")
     @ApiResponses(value = [
-        ApiResponse(responseCode = "200", description = "Successfully retrieved all bookings"),
+        ApiResponse(responseCode = "200", description = "Successfully retrieved all bookings",
+            content = [Content(mediaType = "application/json",
+                schema = Schema(implementation = BookingDto::class))]),
         ApiResponse(responseCode = "401", description = "Unauthorized request")
     ])
     @GetMapping("/{id}")
@@ -31,7 +37,9 @@ class BookingController {
 
     @Operation(summary = "Create new booking", description = "Creates a new booking in the system")
     @ApiResponses(value = [
-        ApiResponse(responseCode = "201", description = "Booking successfully created"),
+        ApiResponse(responseCode = "201", description = "Booking successfully created",
+            content = [Content(mediaType = "application/json",
+                schema = Schema(implementation = BookingDto::class))]),
         ApiResponse(responseCode = "400", description = "Invalid input data")
     ])
     @PostMapping("/")
@@ -41,7 +49,9 @@ class BookingController {
 
     @Operation(summary = "Update existing booking", description = "Updates a booking with the provided ID")
     @ApiResponses(value = [
-        ApiResponse(responseCode = "200", description = "Booking successfully updated"),
+        ApiResponse(responseCode = "200", description = "Booking successfully updated",
+            content = [Content(mediaType = "application/json",
+                schema = Schema(implementation = BookingDto::class))]),
         ApiResponse(responseCode = "404", description = "Booking not found")
     ])
     @PutMapping("/{id}")
@@ -61,7 +71,9 @@ class BookingController {
 
     @Operation(summary = "Get bookings by user ID", description = "Retrieves all bookings associated with a specific user")
     @ApiResponses(value = [
-        ApiResponse(responseCode = "200", description = "Successfully retrieved user's bookings"),
+        ApiResponse(responseCode = "200", description = "Successfully retrieved user's bookings",
+            content = [Content(mediaType = "application/json",
+                schema = Schema(implementation = Array<BookingDto>::class))]),
         ApiResponse(responseCode = "404", description = "User not found")
     ])
     @GetMapping("/user/{userId}")
