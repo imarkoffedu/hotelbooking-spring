@@ -3,7 +3,6 @@
 ## Description
 This is a simple hotel booking REST API built with Spring Boot. 
 It allows users to manage bookings, including creating, updating, deleting, and retrieving booking listings. 
-The API is designed to be easy to use and provides a simple documentation for managing property data.
 
 Also, I tried my best to make the code as clean and readable as possible, following best practices and design patterns.
 
@@ -13,6 +12,7 @@ Also, I tried my best to make the code as clean and readable as possible, follow
 - H2 Database (in-memory)
 - OpenAPI (Swagger)
 - Logging
+- JUnit 5 (unit tests only)
 
 ## Endpoints
 
@@ -43,3 +43,5 @@ To view the API documentation, visit http://localhost:8080/swagger-ui.html after
 | `service`       | Contains service classes for business logic                       |
 | `type`          | Contains enums and typealiases used in the application            |
 | `util`          | Contains utility classes                                          |
+
+Test module has the same structure as the main module.
