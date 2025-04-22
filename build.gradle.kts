@@ -7,7 +7,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.7"
 }
 
-group = "com.imarkoff.propertyagency"
+group = "com.imarkoff.hotelbooking"
 version = "0.0.1-SNAPSHOT"
 
 java {

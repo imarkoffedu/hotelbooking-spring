@@ -1,1 +1,1 @@
-rootProject.name = "propertyagency"
+rootProject.name = "hotelbooking"

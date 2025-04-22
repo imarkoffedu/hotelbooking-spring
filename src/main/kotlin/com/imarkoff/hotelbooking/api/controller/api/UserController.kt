@@ -15,7 +15,7 @@ import java.util.*
 
 @RestController
 @RequestMapping("/users")
-@Tag(name = "User Management", description = "Endpoints for managing users in the property agency system")
+@Tag(name = "User Management", description = "Endpoints for managing users in the hotel system")
 class UserController(
     private val userService: UserService
 ) {

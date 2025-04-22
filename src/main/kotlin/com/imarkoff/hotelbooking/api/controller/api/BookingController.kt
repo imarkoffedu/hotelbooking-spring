@@ -12,7 +12,7 @@ import java.util.UUID
 
 @RestController
 @RequestMapping("/bookings")
-@Tag(name = "Booking Management", description = "Endpoints for managing property bookings")
+@Tag(name = "Booking Management", description = "Endpoints for managing hotel bookings")
 class BookingController(
     private val bookingService: BookingService
 ) {
