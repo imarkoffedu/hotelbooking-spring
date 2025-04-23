@@ -47,11 +47,4 @@ kotlin {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
-	jvmArgs(
-		"-javaagent:${
-			configurations.testRuntimeClasspath.get()
-				.find { it.name.contains("byte-buddy-agent") }
-				?.absolutePath
-		}"
-	)
 }
