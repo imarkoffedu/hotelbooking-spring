@@ -2,11 +2,11 @@
 
 @username = admin
 @password = admin
-@auth = YWRtaW46YWRtaW4=
+@auth = Basic {{btoa(username + ':' + password)}}
 
 ### POST USER
 POST http://localhost:8080/users/
-Authorization: Basic {{auth}}
+Authorization: {{auth}}
 Content-Type: application/json
 
 {
@@ -20,12 +20,12 @@ Content-Type: application/json
 
 ### GET ALL USERS
 GET http://localhost:8080/users/
-Authorization: Basic {{auth}}
+Authorization: {{auth}}
 Accept: application/json
 
 ### CREATE BOOKING
 POST http://localhost:8080/bookings/
-Authorization: Basic {{auth}}
+Authorization: {{auth}}
 Content-Type: application/json
 
 {
@@ -38,5 +38,5 @@ Content-Type: application/json
 
 ### GET BOOKINGS FOR USER
 GET http://localhost:8080/bookings/user/{{userId}}
-Authorization: Basic {{auth}}
+Authorization: {{auth}}
 Accept: application/json
