@@ -1,0 +1,42 @@
+### All methods are available at http://localhost:8080//swagger-ui.html
+
+@username = admin
+@password = admin
+@auth = YWRtaW46YWRtaW4=
+
+### POST USER
+POST http://localhost:8080/users/
+Authorization: Basic {{auth}}
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "johndoe@example.com"
+}
+
+> {%
+    client.global.set("userId", response.body.id);
+%}
+
+### GET ALL USERS
+GET http://localhost:8080/users/
+Authorization: Basic {{auth}}
+Accept: application/json
+
+### CREATE BOOKING
+POST http://localhost:8080/bookings/
+Authorization: Basic {{auth}}
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "roomNumber": 101,
+  "startDate": "2025-10-15",
+  "endDate": "2025-10-20",
+  "status": "CONFIRMED"
+}
+
+### GET BOOKINGS FOR USER
+GET http://localhost:8080/bookings/user/{{userId}}
+Authorization: Basic {{auth}}
+Accept: application/json
