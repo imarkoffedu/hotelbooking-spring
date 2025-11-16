@@ -25,6 +25,14 @@ class UserService(
     fun getUserById(id: UUID) = userFinder.findUserById(id)
 
     /**
+     * Retrieves a user by their email.
+     * @param email The email of the user to retrieve.
+     * @return A UserDto object representing the user.
+     * @throws NoSuchElementException if the user is not found.
+     */
+    fun getUserByEmail(email: String) = userFinder.findUserByEmail(email)
+
+    /**
      * Creates a new user based on the provided user form data.
      * @param userFormDto The form data for the new user.
      * @return The created UserDto object.
