@@ -1,12 +1,8 @@
 ### All methods are available at http://localhost:8080//swagger-ui.html
 
-@username = admin
-@password = admin
-@auth = Basic {{btoa(username + ':' + password)}}
-
 ### POST USER
-POST http://localhost:8080/users/
-Authorization: {{auth}}
+POST http://localhost:8080/admin/users/
+Authorization: Basic admin admin
 Content-Type: application/json
 
 {
@@ -19,13 +15,13 @@ Content-Type: application/json
 %}
 
 ### GET ALL USERS
-GET http://localhost:8080/users/
-Authorization: {{auth}}
+GET http://localhost:8080/admin/users/
+Authorization: Basic admin admin
 Accept: application/json
 
 ### CREATE BOOKING
 POST http://localhost:8080/bookings/
-Authorization: {{auth}}
+Authorization: Basic admin admin
 Content-Type: application/json
 
 {
@@ -38,5 +34,5 @@ Content-Type: application/json
 
 ### GET BOOKINGS FOR USER
 GET http://localhost:8080/bookings/user/{{userId}}
-Authorization: {{auth}}
+Authorization: Basic admin admin
 Accept: application/json

@@ -1,0 +1,45 @@
+### All methods are available at http://localhost:8080//swagger-ui.html
+
+@email = johndoe@example.com
+
+### GET USER BY MAIL
+GET http://localhost:8080/users/email/{{email}}
+Authorization: Basic booker booker
+Accept: application/json
+Content-Type: application/json
+
+> {%
+    client.global.set("userId", response.body.id);
+%}
+
+### GET USER BOOKINGS
+GET http://localhost:8080/bookings/user/{{userId}}
+Authorization: Basic booker booker
+Accept: application/json
+
+> {%
+    client.global.set("bookingId", response.body[0].id);
+ %}
+
+### UPDATE BOOKING STATUS
+PUT http://localhost:8080/bookings/{{bookingId}}
+Authorization: Basic booker booker
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "roomNumber": 101,
+  "startDate": "2023-10-15",
+  "endDate": "2023-10-20",
+  "status": "CANCELLED"
+}
+
+### CREATE NEW USER (SHOULD FAIL)
+POST http://localhost:8080/admin/users/
+Authorization: Basic booker booker
+Content-Type: application/json
+
+{
+  "name": "Jane Smith",
+  "email": "janesmith@example.com"
+}
