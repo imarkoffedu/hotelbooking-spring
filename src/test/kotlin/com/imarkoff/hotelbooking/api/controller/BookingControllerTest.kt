@@ -10,6 +10,8 @@ import org.mockito.kotlin.whenever
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
+import org.springframework.security.test.context.support.WithMockUser
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
 import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
@@ -34,6 +36,13 @@ class BookingControllerTest {
     private lateinit var bookingService: BookingService
 
     @Test
+    fun `getAllBookings throws unauthorized without authentication`() {
+        mockMvc.perform(get("/bookings/"))
+            .andExpect(status().isUnauthorized)
+    }
+
+    @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `getAllBookings returns all bookings`() {
         val bookings = listOf(getMockBookingDto(), getMockBookingDto())
         whenever(bookingService.getAllBookings()).thenReturn(bookings)
@@ -45,6 +54,7 @@ class BookingControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `getAllBookings returns empty list when no bookings exist`() {
         val bookings = emptyList<BookingDto>()
         whenever(bookingService.getAllBookings()).thenReturn(bookings)
@@ -55,6 +65,7 @@ class BookingControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `getBookingById returns booking if it exists`() {
         val booking = getMockBookingDto()
         whenever(bookingService.getBookingById(booking.id.toUUID())).thenReturn(booking)
@@ -65,6 +76,7 @@ class BookingControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `getBookingById returns 404 if booking does not exist`() {
         val bookingId = UUID.randomUUID()
         whenever(bookingService.getBookingById(bookingId)).thenThrow(NoSuchElementException())
@@ -76,6 +88,7 @@ class BookingControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `getBookingsByUserId returns bookings for a user`() {
         val userId = UUID.randomUUID()
         val bookings = listOf(getMockBookingDto(), getMockBookingDto())
@@ -88,6 +101,7 @@ class BookingControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `getBookingsByUserId returns empty list when no bookings exist for user`() {
         val userId = UUID.randomUUID()
         val bookings = emptyList<BookingDto>()
@@ -99,6 +113,7 @@ class BookingControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `createBooking returns created booking`() {
         val bookingForm = getMockBookingFormDto()
         val booking = getMockBookingDto()
@@ -107,12 +122,14 @@ class BookingControllerTest {
         mockMvc.perform(post("/bookings/")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(bookingForm))
+            .with(csrf())
         )
             .andExpect(status().isCreated)
             .andExpect(jsonPath("$.id").value(booking.id))
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `createBooking returns 404 if user does not exist`() {
         val bookingForm = getMockBookingFormDto()
         whenever(bookingService.createBooking(bookingForm))
@@ -121,6 +138,7 @@ class BookingControllerTest {
         mockMvc.perform(post("/bookings/")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(bookingForm))
+            .with(csrf())
         )
             .andExpect(status().isNotFound)
             .andExpect(jsonPath("$.status").value(404))
@@ -128,6 +146,7 @@ class BookingControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `createBooking returns 400 if input data is invalid`() {
         val bookingForm = getMockBookingFormDto()
         whenever(bookingService.createBooking(bookingForm))
@@ -136,6 +155,7 @@ class BookingControllerTest {
         mockMvc.perform(post("/bookings/")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(bookingForm))
+            .with(csrf())
         )
             .andExpect(status().isBadRequest)
             .andExpect(jsonPath("$.status").value(400))
@@ -143,6 +163,7 @@ class BookingControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["BOOKER"])
     fun `updateBooking returns updated booking`() {
         val bookingForm = getMockBookingFormDto()
         val updatedBooking = getMockBookingDto()
@@ -152,12 +173,14 @@ class BookingControllerTest {
         mockMvc.perform(put("/bookings/$bookingId")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(bookingForm))
+            .with(csrf())
         )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.id").value(updatedBooking.id))
     }
 
     @Test
+    @WithMockUser(roles = ["BOOKER"])
     fun `updateBooking returns 404 if booking does not exist`() {
         val bookingForm = getMockBookingFormDto()
         val bookingId = UUID.randomUUID()
@@ -167,6 +190,7 @@ class BookingControllerTest {
         mockMvc.perform(put("/bookings/$bookingId")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(bookingForm))
+            .with(csrf())
         )
             .andExpect(status().isNotFound)
             .andExpect(jsonPath("$.status").value(404))
@@ -174,6 +198,7 @@ class BookingControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `updateBooking returns 400 if input data is invalid`() {
         val bookingForm = getMockBookingFormDto()
         val bookingId = UUID.randomUUID()
@@ -183,6 +208,7 @@ class BookingControllerTest {
         mockMvc.perform(put("/bookings/$bookingId")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(bookingForm))
+            .with(csrf())
         )
             .andExpect(status().isBadRequest)
             .andExpect(jsonPath("$.status").value(400))
@@ -190,21 +216,27 @@ class BookingControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `deleteBooking returns 204 if booking is deleted successfully`() {
         val bookingId = UUID.randomUUID()
         doNothing().whenever(bookingService).deleteBooking(bookingId)
 
-        mockMvc.perform(delete("/bookings/$bookingId"))
+        mockMvc.perform(delete("/bookings/$bookingId")
+            .with(csrf())
+        )
             .andExpect(status().isNoContent)
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN", "BOOKER"])
     fun `deleteBooking returns 404 if booking does not exist`() {
         val bookingId = UUID.randomUUID()
         whenever(bookingService.deleteBooking(bookingId))
             .thenThrow(NoSuchElementException("Booking not found"))
 
-        mockMvc.perform(delete("/bookings/$bookingId"))
+        mockMvc.perform(delete("/bookings/$bookingId")
+            .with(csrf())
+        )
             .andExpect(status().isNotFound)
             .andExpect(jsonPath("$.status").value(404))
             .andExpect(jsonPath("$.message").value("Booking not found"))

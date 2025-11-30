@@ -24,13 +24,13 @@ class SecurityConfig {
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
             .csrf { it.disable() }
-//            .authorizeHttpRequests {
-//                it
-//                    .requestMatchers("index.html").permitAll()
-//                    .requestMatchers("/admin/**").hasRole("ADMIN")
+            .authorizeHttpRequests {
+                it
+                    .requestMatchers("index.html").permitAll()
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
 //                    .requestMatchers("/bookings/**").hasAnyRole("ADMIN", "BOOKER")
-//                    .anyRequest().authenticated()
-//            }
+                    .anyRequest().authenticated()
+            }
             .httpBasic (Customizer.withDefaults())
         return http.build()
     }
