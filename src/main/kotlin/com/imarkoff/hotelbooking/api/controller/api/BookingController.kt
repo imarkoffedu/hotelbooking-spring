@@ -5,14 +5,18 @@ import com.imarkoff.hotelbooking.api.service.bookingservice.BookingService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.*
 import io.swagger.v3.oas.annotations.responses.*
+import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import java.util.UUID
 
 @RestController
 @RequestMapping("/bookings")
+@SecurityRequirement(name = "basicScheme")
 @Tag(name = "Booking Management", description = "Endpoints for managing hotel bookings")
+@PreAuthorize("hasAnyRole('ADMIN', 'BOOKER')")
 class BookingController(
     private val bookingService: BookingService
 ) {

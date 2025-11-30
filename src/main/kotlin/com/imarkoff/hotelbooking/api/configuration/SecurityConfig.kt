@@ -3,6 +3,7 @@ package com.imarkoff.hotelbooking.api.configuration
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.Customizer
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.core.userdetails.User
@@ -14,19 +15,22 @@ import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 class SecurityConfig {
+
+//    fun preAuthorizeMethodInterceptor(): Advisor = AuthorizationManagerBeforeMethodInterceptor.preAuthorize()
 
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
             .csrf { it.disable() }
-            .authorizeHttpRequests {
-                it
-                    .requestMatchers("index.html").permitAll()
-                    .requestMatchers("/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/bookings/**").hasAnyRole("ADMIN", "BOOKER")
-                    .anyRequest().authenticated()
-            }
+//            .authorizeHttpRequests {
+//                it
+//                    .requestMatchers("index.html").permitAll()
+//                    .requestMatchers("/admin/**").hasRole("ADMIN")
+//                    .requestMatchers("/bookings/**").hasAnyRole("ADMIN", "BOOKER")
+//                    .anyRequest().authenticated()
+//            }
             .httpBasic (Customizer.withDefaults())
         return http.build()
     }
