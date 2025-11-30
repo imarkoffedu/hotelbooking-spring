@@ -27,7 +27,7 @@ class SecurityConfig {
             .authorizeHttpRequests {
                 it
                     .requestMatchers("index.html").permitAll()
-                    .requestMatchers("/admin/**").hasRole("ADMIN")
+//                    .requestMatchers("/admin/**").hasRole("ADMIN")
 //                    .requestMatchers("/bookings/**").hasAnyRole("ADMIN", "BOOKER")
                     .anyRequest().authenticated()
             }
