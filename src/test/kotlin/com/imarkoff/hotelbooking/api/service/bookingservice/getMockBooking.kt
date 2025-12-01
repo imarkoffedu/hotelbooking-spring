@@ -1,9 +1,9 @@
 package com.imarkoff.hotelbooking.api.service.bookingservice
 
-import com.imarkoff.hotelbooking.api.dto.BookingDto
-import com.imarkoff.hotelbooking.api.dto.BookingFormDto
-import com.imarkoff.hotelbooking.api.model.Booking
-import com.imarkoff.hotelbooking.api.type.BookingStatus
+import com.imarkoff.hotelbooking.api.booking.presentation.dtos.BookingDto
+import com.imarkoff.hotelbooking.api.booking.presentation.dtos.BookingFormDto
+import com.imarkoff.hotelbooking.api.booking.domain.Booking
+import com.imarkoff.hotelbooking.api.booking.domain.BookingStatus
 import java.time.LocalDate
 import java.util.*
 

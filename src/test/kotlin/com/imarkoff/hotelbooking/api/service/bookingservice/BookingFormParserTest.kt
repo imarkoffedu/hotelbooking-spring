@@ -1,8 +1,9 @@
 package com.imarkoff.hotelbooking.api.service.bookingservice
 
-import com.imarkoff.hotelbooking.api.model.Booking
-import com.imarkoff.hotelbooking.api.type.`typealias`.toLocalDate
-import com.imarkoff.hotelbooking.api.type.`typealias`.toUUID
+import com.imarkoff.hotelbooking.api.booking.application.BookingFormParser
+import com.imarkoff.hotelbooking.api.booking.domain.Booking
+import com.imarkoff.hotelbooking.api.shared.`typealias`.toLocalDate
+import com.imarkoff.hotelbooking.api.shared.`typealias`.toUUID
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

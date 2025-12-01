@@ -1,7 +1,10 @@
 package com.imarkoff.hotelbooking.api.service.bookingservice
 
-import com.imarkoff.hotelbooking.api.dto.BookingFormDto
-import com.imarkoff.hotelbooking.api.type.BookingStatus
+import com.imarkoff.hotelbooking.api.booking.application.BookingReader
+import com.imarkoff.hotelbooking.api.booking.application.BookingService
+import com.imarkoff.hotelbooking.api.booking.application.BookingWriter
+import com.imarkoff.hotelbooking.api.booking.presentation.dtos.BookingFormDto
+import com.imarkoff.hotelbooking.api.booking.domain.BookingStatus
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock

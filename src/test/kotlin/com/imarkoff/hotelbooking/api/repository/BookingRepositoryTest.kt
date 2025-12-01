@@ -1,5 +1,6 @@
 package com.imarkoff.hotelbooking.api.repository
 
+import com.imarkoff.hotelbooking.api.booking.persistence.BookingRepository
 import com.imarkoff.hotelbooking.api.service.bookingservice.getMockBooking
 import org.assertj.core.api.Assertions.assertThat
 import org.springframework.beans.factory.annotation.Autowired

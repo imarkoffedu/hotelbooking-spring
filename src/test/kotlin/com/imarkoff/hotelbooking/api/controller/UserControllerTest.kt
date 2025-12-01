@@ -1,9 +1,9 @@
 package com.imarkoff.hotelbooking.api.controller
 
-import com.imarkoff.hotelbooking.api.controller.api.UserController
-import com.imarkoff.hotelbooking.api.service.userservice.UserService
+import com.imarkoff.hotelbooking.api.user.presentation.UsersController
+import com.imarkoff.hotelbooking.api.user.application.UserService
 import com.imarkoff.hotelbooking.api.service.userservice.getMockUserDto
-import com.imarkoff.hotelbooking.api.type.`typealias`.toUUID
+import com.imarkoff.hotelbooking.api.shared.`typealias`.toUUID
 import org.mockito.kotlin.whenever
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -19,7 +19,7 @@ import java.util.*
 import kotlin.NoSuchElementException
 import kotlin.test.Test
 
-@WebMvcTest(UserController::class)
+@WebMvcTest(UsersController::class)
 @AutoConfigureMockMvc(addFilters = false)
 class UserControllerTest {
 

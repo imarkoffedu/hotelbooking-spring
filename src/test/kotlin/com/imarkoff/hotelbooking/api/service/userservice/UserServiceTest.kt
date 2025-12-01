@@ -1,6 +1,9 @@
 package com.imarkoff.hotelbooking.api.service.userservice
 
-import com.imarkoff.hotelbooking.api.exception.ConflictException
+import com.imarkoff.hotelbooking.api.shared.exception.ConflictException
+import com.imarkoff.hotelbooking.api.user.application.UserFinder
+import com.imarkoff.hotelbooking.api.user.application.UserService
+import com.imarkoff.hotelbooking.api.user.application.UserWriter
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith

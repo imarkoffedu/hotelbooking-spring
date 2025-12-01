@@ -1,9 +1,10 @@
 package com.imarkoff.hotelbooking.api.service.bookingservice
 
-import com.imarkoff.hotelbooking.api.dto.BookingDto
-import com.imarkoff.hotelbooking.api.model.Booking
-import com.imarkoff.hotelbooking.api.repository.BookingRepository
-import com.imarkoff.hotelbooking.api.util.DtoFactory
+import com.imarkoff.hotelbooking.api.booking.application.BookingReader
+import com.imarkoff.hotelbooking.api.booking.presentation.dtos.BookingDto
+import com.imarkoff.hotelbooking.api.booking.domain.Booking
+import com.imarkoff.hotelbooking.api.booking.persistence.BookingRepository
+import com.imarkoff.hotelbooking.api.shared.util.DtoFactory
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith

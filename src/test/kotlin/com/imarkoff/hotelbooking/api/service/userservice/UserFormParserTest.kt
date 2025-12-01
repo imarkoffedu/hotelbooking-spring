@@ -1,6 +1,7 @@
 package com.imarkoff.hotelbooking.api.service.userservice
 
-import com.imarkoff.hotelbooking.api.model.User
+import com.imarkoff.hotelbooking.api.user.application.UserFormParser
+import com.imarkoff.hotelbooking.api.user.domain.User
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

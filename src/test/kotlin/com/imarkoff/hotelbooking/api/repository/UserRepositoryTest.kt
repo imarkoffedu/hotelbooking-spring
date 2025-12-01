@@ -1,6 +1,7 @@
 package com.imarkoff.hotelbooking.api.repository
 
 import com.imarkoff.hotelbooking.api.service.userservice.getMockUser
+import com.imarkoff.hotelbooking.api.user.persistence.UserRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest

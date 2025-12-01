@@ -1,8 +1,8 @@
 package com.imarkoff.hotelbooking.api.service.userservice
 
-import com.imarkoff.hotelbooking.api.dto.UserDto
-import com.imarkoff.hotelbooking.api.dto.UserFormDto
-import com.imarkoff.hotelbooking.api.model.User
+import com.imarkoff.hotelbooking.api.user.presentation.dtos.UserDto
+import com.imarkoff.hotelbooking.api.user.presentation.dtos.UserFormDto
+import com.imarkoff.hotelbooking.api.user.domain.User
 import java.util.*
 
 fun getMockUser() = User(

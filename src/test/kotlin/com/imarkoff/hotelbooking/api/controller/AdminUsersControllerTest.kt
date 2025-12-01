@@ -1,10 +1,10 @@
 package com.imarkoff.hotelbooking.api.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.imarkoff.hotelbooking.api.controller.api.AdminUsersController
-import com.imarkoff.hotelbooking.api.dto.UserDto
-import com.imarkoff.hotelbooking.api.exception.ConflictException
-import com.imarkoff.hotelbooking.api.service.userservice.UserService
+import com.imarkoff.hotelbooking.api.user.presentation.AdminUsersController
+import com.imarkoff.hotelbooking.api.user.presentation.dtos.UserDto
+import com.imarkoff.hotelbooking.api.shared.exception.ConflictException
+import com.imarkoff.hotelbooking.api.user.application.UserService
 import com.imarkoff.hotelbooking.api.service.userservice.getMockUserDto
 import com.imarkoff.hotelbooking.api.service.userservice.getMockUserFormDto
 import org.mockito.kotlin.whenever
@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import kotlin.test.Test
-import com.imarkoff.hotelbooking.api.configuration.SecurityConfig
+import com.imarkoff.hotelbooking.api.core.configuration.SecurityConfig
 
 @WebMvcTest(AdminUsersController::class)
 @Import(SecurityConfig::class)

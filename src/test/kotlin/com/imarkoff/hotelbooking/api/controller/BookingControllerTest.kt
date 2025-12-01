@@ -1,10 +1,11 @@
 package com.imarkoff.hotelbooking.api.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.imarkoff.hotelbooking.api.controller.api.BookingController
-import com.imarkoff.hotelbooking.api.dto.BookingDto
+import com.imarkoff.hotelbooking.api.booking.application.BookingService
+import com.imarkoff.hotelbooking.api.booking.presentation.BookingController
+import com.imarkoff.hotelbooking.api.booking.presentation.dtos.BookingDto
 import com.imarkoff.hotelbooking.api.service.bookingservice.*
-import com.imarkoff.hotelbooking.api.type.`typealias`.toUUID
+import com.imarkoff.hotelbooking.api.shared.`typealias`.toUUID
 import org.mockito.kotlin.doNothing
 import org.mockito.kotlin.whenever
 import org.springframework.beans.factory.annotation.Autowired

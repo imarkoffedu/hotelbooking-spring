@@ -1,0 +1,45 @@
+package com.imarkoff.hotelbooking.api.booking.application
+
+import com.imarkoff.hotelbooking.api.booking.presentation.dtos.BookingFormDto
+import com.imarkoff.hotelbooking.api.booking.domain.Booking
+import com.imarkoff.hotelbooking.api.shared.`typealias`.toLocalDate
+import com.imarkoff.hotelbooking.api.shared.`typealias`.toUUID
+import org.springframework.stereotype.Service
+import java.time.format.DateTimeParseException
+import java.util.*
+
+@Service
+class BookingFormParser {
+    /**
+     * Parses a BookingFormDto into a Booking object.
+     * @param bookingForm The BookingFormDto to parse.
+     * @param bookingId Optional booking ID for updates.
+     * @return The Booking object.
+     * @throws IllegalArgumentException if the date format is invalid.
+     */
+    fun parse(bookingForm: BookingFormDto, bookingId: UUID? = null) =
+        tryBookingFormToBooking(bookingForm, bookingId)
+
+    private fun tryBookingFormToBooking(bookingForm: BookingFormDto, bookingId: UUID?): Booking {
+        try {
+            return bookingFormDtoToBooking(bookingForm, bookingId)
+        } catch (e: DateTimeParseException) {
+            throw IllegalArgumentException("Invalid date format: ${bookingForm.startDate} or ${bookingForm.endDate}")
+        }
+    }
+
+    private fun bookingFormDtoToBooking(bookingForm: BookingFormDto, bookingId: UUID?): Booking {
+        val id = bookingId ?: UUID.randomUUID()
+        val userId = bookingForm.userId.toUUID()
+        val startDate = bookingForm.startDate.toLocalDate()
+        val endDate = bookingForm.endDate.toLocalDate()
+        return Booking(
+            id = id,
+            userId = userId,
+            roomNumber = bookingForm.roomNumber,
+            startDate = startDate,
+            endDate = endDate,
+            status = bookingForm.status
+        )
+    }
+}
